@@ -3,7 +3,6 @@ package com.eagleminds.jciindia
 import android.app.ProgressDialog
 import android.content.BroadcastReceiver
 import android.content.Context
-
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Bitmap
@@ -12,15 +11,12 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
-
-
 import com.eagleminds.jciindia.databinding.ActivityMainBinding
 import com.google.firebase.messaging.FirebaseMessaging
 
@@ -29,15 +25,24 @@ class MainActivity : AppCompatActivity() {
     private lateinit var offlineLayout: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         offlineLayout = findViewById(R.id.offlineLayout)
         setupWebView()
         handleIntent(intent)
-       }
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val token = task.result
+                Log.d("MainActivity", "Device Token: $token")
+                // Use the token as needed
+            } else {
+                Log.e("MainActivity", "Failed to retrieve device token")
+            }
+        }
+
+    }
     private fun handleIntent(intent: Intent?) {
         val url = intent?.getStringExtra("urls")
         Log.d("MainActivity", "URL: $url")
@@ -79,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         }
         binding.webView.settings.useWideViewPort=true
         binding.webView.settings.loadWithOverviewMode=true
-        binding.webView.loadUrl("https://www.tamilanjobs.in/web/pdf.html")
+        binding.webView.loadUrl("https://www.jqueryscript.net/demo/web-pdf-viewer/example.html")
     }
     private var doubleBackToExitPressedOnce = false
     private val DOUBLE_BACK_PRESS_INTERVAL = 2000 // time interval in milliseconds (2000ms = 2s)
@@ -89,6 +94,7 @@ class MainActivity : AppCompatActivity() {
             binding.webView.goBack()
         } else {
             if (doubleBackToExitPressedOnce) {
+                startActivity(Intent(this, ThankYouActivity::class.java))
                 finish()  // Finish the current activity, exiting the app
                 return
             }
@@ -126,6 +132,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-
 }
