@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1098097810383",
+    "project_id": "jciindia-53b1a",
+    "storage_bucket": "jciindia-53b1a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098097810383:android:1319e9ab253c171ca090ba",
+        "android_client_info": {
+          "package_name": "com.eagleminds.jciindia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1098097810383-cjhgb16sv0p35dfb0no4kfcvn9q4ss7l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaRU5GGSajuWuw9hZBj3fhEkp_lD01fdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1098097810383-cjhgb16sv0p35dfb0no4kfcvn9q4ss7l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
