@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         }
         binding.webView.settings.useWideViewPort=true
         binding.webView.settings.loadWithOverviewMode=true
-        binding.webView.loadUrl("https://www.jqueryscript.net/demo/web-pdf-viewer/example.html")
+        binding.webView.loadUrl("https://www.tamilanjobs.in/web/")
     }
     private var doubleBackToExitPressedOnce = false
     private val DOUBLE_BACK_PRESS_INTERVAL = 2000 // time interval in milliseconds (2000ms = 2s)
