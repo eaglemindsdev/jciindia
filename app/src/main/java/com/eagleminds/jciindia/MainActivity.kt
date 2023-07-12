@@ -16,6 +16,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.os.Handler
 import android.os.Looper
+import android.webkit.WebSettings
 import android.widget.Toast
 import com.eagleminds.jciindia.databinding.ActivityMainBinding
 import com.google.firebase.messaging.FirebaseMessaging
@@ -84,6 +85,7 @@ class MainActivity : AppCompatActivity() {
         }
         binding.webView.settings.useWideViewPort=true
         binding.webView.settings.loadWithOverviewMode=true
+        binding.webView.settings.cacheMode = WebSettings.LOAD_NO_CACHE
         binding.webView.loadUrl("https://www.tamilanjobs.in/web/")
     }
     private var doubleBackToExitPressedOnce = false
