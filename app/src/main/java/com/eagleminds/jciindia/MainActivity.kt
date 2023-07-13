@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.net.ConnectivityManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.os.Handler
 import android.os.Looper
+import android.view.WindowManager
 import android.webkit.WebSettings
 import android.widget.Toast
 import com.eagleminds.jciindia.databinding.ActivityMainBinding
@@ -32,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         offlineLayout = findViewById(R.id.offlineLayout)
         setupWebView()
         handleIntent(intent)
-
+        setStatusBarColor(Color.parseColor("#1890ff"))
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val token = task.result
@@ -42,13 +44,20 @@ class MainActivity : AppCompatActivity() {
                 Log.e("MainActivity", "Failed to retrieve device token")
             }
         }
-
     }
     private fun handleIntent(intent: Intent?) {
         val url = intent?.getStringExtra("urls")
         Log.d("MainActivity", "URL: $url")
         if (!url.isNullOrEmpty()) {
             binding.webView.loadUrl(url)
+        }
+    }
+    private fun setStatusBarColor(color: Int) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val window = this.window
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.statusBarColor = color
         }
     }
 
@@ -86,7 +95,7 @@ class MainActivity : AppCompatActivity() {
         binding.webView.settings.useWideViewPort=true
         binding.webView.settings.loadWithOverviewMode=true
         binding.webView.settings.cacheMode = WebSettings.LOAD_NO_CACHE
-        binding.webView.loadUrl("https://www.tamilanjobs.in/web/")
+        binding.webView.loadUrl("https://jcizone16directory.eagleminds.net/")
     }
     private var doubleBackToExitPressedOnce = false
     private val DOUBLE_BACK_PRESS_INTERVAL = 2000 // time interval in milliseconds (2000ms = 2s)
